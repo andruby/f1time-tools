@@ -1,3 +1,5 @@
-Currently this collection of tools consist of a simple Sinatra webapp that parses laptimes out of a race report. 
+Collection of tools for F1Time: http://www.f1time.com
 
-View http://www.andrewsblog.org for more information.
+Currently this "collection" of tools is a simple Sinatra webapp that parses laptimes out of a race report. 
+
+View http://www.andrewsblog.org for more information or go to http://f1tools.andrewsblog.org for a live version.
