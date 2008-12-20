@@ -1,0 +1,27 @@
+body {
+	font-family: Arial, Helvetica, Verdana;
+}
+
+#left {
+	float: left;
+	width: 400px;
+}
+
+#right {
+	margin-left: 420px;
+}
+
+table.classic {
+	width: 500px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-size: x-small;
+	text-align: right;
+}
+
+.header {
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: medium;
+}

@@ -1,0 +1,44 @@
+<div id="left">
+	<p>Copy and paste the whole html from the race report here:</p>
+	<form method="post">
+		<textarea name="data" cols="45" rows="10"><%= params[:data] %></textarea>
+		<p>
+			<input type="checkbox" name="comma" value="1" /> Use comma instead of period as decimal separator<br/>
+			<small>( Useful for non-english MS Excel versions )</small>
+		</p>
+		<p>
+			<input type="submit" />
+		</p>
+	</form>
+</div>
+
+<div id="right">
+<p>
+	Select tabel, copy and paste into MS Excel as Unicode tekst<br/>
+	<small>The cell format for the dayfraction is mm:ss<%= params[:comma] ? ',' : '.' %>000</small>
+</p>
+<p>
+	<%= @gp_name %>
+</p>
+<% if @lap_array %>
+	<table class="classic" border="1" cellpadding="2">
+		<tr class="header">
+			<td>lap</td>
+			<td>pos</td>
+			<td>prev</td>
+			<td>time</td>
+			<td>time (dayfraction)</td>
+			<td>gap (s)</td>
+			<td>fuel</td>
+			<td>temp</td>
+		</tr>
+		<tbody>
+		<% for row in @lap_array %>
+			<tr>
+				<td><%= row.join('</td><td>') %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>
+</div>
