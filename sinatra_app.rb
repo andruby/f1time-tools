@@ -14,6 +14,7 @@ post '/' do
   @lap_array = params[:data].scan(/javascript:showLapInfo\((\d+), (\d+), (\d+), '(\d+:\d+.\d+)', (\d+.\d+), (\d+), (\d+)\)/)
   
   if @gp_name && @lap_array
+    # No errors
     # Parse the laptimes into dayfraction for easy excel integration
     @lap_array.collect! { |row| row.insert(4,parse_time(row[3])) }
   
@@ -23,14 +24,12 @@ post '/' do
   
     # replace all periods by comma's if checkbox has been selected
     @lap_array.collect! { |row| row.collect! { |item| commatize(item) } } if params[:comma]
-  
-    # Launch the template with index
-    erb :index
   else
-    # There has been an error
+    # gp_name is missing and/or no lapdata found
     @error = "Incorrect race report html"
-    erb :index
   end
+  
+  erb :index
 end
 
 require 'helpers.rb'
