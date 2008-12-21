@@ -4,11 +4,11 @@ body {
 
 #left {
 	float: left;
-	width: 400px;
+	width: 420px;
 }
 
 #right {
-	margin-left: 420px;
+	margin-left: 440px;
 }
 
 table.classic {

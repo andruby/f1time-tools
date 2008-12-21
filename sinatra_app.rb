@@ -20,6 +20,7 @@ post '/' do
   # replace all periods by comma's if checkbox has been selected
   @lap_array.collect! { |row| row.collect! { |item| commatize(item) } } if params[:comma]
   
+  # Launch the template with index
   erb :index
 end
 
