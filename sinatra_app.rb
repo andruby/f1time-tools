@@ -6,17 +6,21 @@ get '/' do
 end
 
 post '/' do
-  # <strong>GP of Magny Cours - France</strong>
   @gp_name = params[:data].scan(/<strong>GP of ([^<]+)<\/strong>/).flatten.first
+  
+  # Extract laptimes into an array
   @lap_array = params[:data].scan(/javascript:showLapInfo\((\d+), (\d+), (\d+), '(\S+)', (\S+), (\d+), (\d+)\)/)
+  # Parse the laptimes into dayfraction for easy excel integration
   @lap_array.collect! { |row| row.insert(4,parse_time(row[3])) }
-  @lap_array.collect! { |row| row.collect! { |item| item.gsub('.',',') } } if params[:comma]
+  
+  # add delta median to every row
+  @median_laptime = median(@lap_array.collect { |row| parse_time(row[3]) })
+  @lap_array.collect! { |row| row << fraction_to_sec( parse_time(row[3]) - @median_laptime ) }
+  
+  # replace all periods by comma's if checkbox has been selected
+  @lap_array.collect! { |row| row.collect! { |item| commatize(item) } } if params[:comma]
+  
   erb :index
 end
 
-helpers do
-  def parse_time(time_string)
-    min,sec,usec = time_string.scan(/(\d+):(\d+).(\d+)/).first
-    day_fraction = ( (min.to_f/(24*60)) + (sec.to_f/(24*60*60)) + (usec.to_f/(24*60*60*1000)) ).to_s
-  end
-end
+require 'helpers.rb'

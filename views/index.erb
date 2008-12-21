@@ -10,6 +10,10 @@
 			<input type="submit" />
 		</p>
 	</form>
+	<p class="footer">
+		OpenSource Software. <a href="http://github.com/andruby/f1time-tools">Sourcecode</a> - 
+		<a href="http://www.andrewsblog.org">Andrewsblog</a>
+	</p>
 </div>
 
 <div id="right">
@@ -18,7 +22,8 @@
 	<small>The cell format for the dayfraction is mm:ss<%= params[:comma] ? ',' : '.' %>000</small>
 </p>
 <p>
-	<%= @gp_name %>
+	GP of <%= @gp_name %><br/>
+	Median laptime: <%= commatize(@median_laptime,params[:comma]) %>
 </p>
 <% if @lap_array %>
 	<table class="classic" border="1" cellpadding="2">
@@ -31,6 +36,7 @@
 			<td>gap (s)</td>
 			<td>fuel</td>
 			<td>temp</td>
+			<td>delta median (s)</td>
 		</tr>
 		<tbody>
 		<% for row in @lap_array %>
