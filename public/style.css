@@ -29,3 +29,8 @@ table.classic {
 .footer {
 	font-size: x-small;	
 }
+
+.error {
+	font-weight: bold;
+	color: red;
+}

@@ -18,4 +18,10 @@ helpers do
     n2 = (ordered.size) / 2 # Other middle of the array.
     median = (ordered[n] + ordered[n2]) / 2.0
   end
+  
+  def html_escape(s)
+    s.to_s.gsub(/[&"><]/,'')
+  end
+  
+  alias :h :html_escape
 end
