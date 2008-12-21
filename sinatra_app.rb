@@ -10,9 +10,10 @@ post '/' do
   # Look for the name of the GP (the andand keeps it working when nothing is found)
   @gp_name = params[:data].scan(/<strong>GP of ([^<]+)<\/strong>/).andand.flatten.andand.first
   
-  if @gp_name
-    # Extract laptimes into an array
-    @lap_array = params[:data].scan(/javascript:showLapInfo\((\d+), (\d+), (\d+), '(\d+:\d+.\d+)', (\d+.\d+), (\d+), (\d+)\)/)
+  # Extract laptimes into an array
+  @lap_array = params[:data].scan(/javascript:showLapInfo\((\d+), (\d+), (\d+), '(\d+:\d+.\d+)', (\d+.\d+), (\d+), (\d+)\)/)
+  
+  if @gp_name && @lap_array
     # Parse the laptimes into dayfraction for easy excel integration
     @lap_array.collect! { |row| row.insert(4,parse_time(row[3])) }
   
