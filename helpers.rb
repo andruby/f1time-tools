@@ -16,11 +16,6 @@ helpers do
     ordered = numbers.sort
     n = (ordered.size - 1) / 2 # Middle of the array
     n2 = (ordered.size) / 2 # Other middle of the array.
-    if ordered.size % 2 == 0 # If number is even
-      median = (ordered[n] + ordered[n2]) / 2.0
-    else
-      median = ordered[n]
-    end
-    median
+    median = (ordered[n] + ordered[n2]) / 2.0
   end
 end
