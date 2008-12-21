@@ -2,4 +2,5 @@ Collection of tools for F1Time: http://www.f1time.com
 
 Currently this "collection" of tools is a simple Sinatra webapp that parses laptimes out of a race report. 
 
-View http://www.andrewsblog.org for more information or go to http://f1tools.andrewsblog.org for a live version.
+Blogpost with announcement: http://andrewsblog.org/2008/12/21/f1time-tool-sinatra-app/
+Or go to http://f1tools.andrewsblog.org for a live version.
