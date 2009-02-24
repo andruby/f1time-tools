@@ -16,13 +16,25 @@
 	</p>
 	<% if @csv_for_chart_1 %>
 		<script type="text/javascript" src="amline/swfobject.js"></script>
-		<div id="amcharts_1235497946812">You need to upgrade your Flash Player</div>
+		<div id="chart_1">You need to upgrade your Flash Player</div>
 		<script type="text/javascript">
 			var so = new SWFObject("amline/amline.swf", "amline", "400", "350", "8", "#FFFFFF");
 			so.addVariable("path", "amline/");
 			so.addVariable("settings_file", encodeURIComponent("chart_1_settings.xml"));
 			so.addVariable("chart_data", encodeURIComponent("<%= @csv_for_chart_1 %>"));
-			so.write("amcharts_1235497946812");
+			so.write("chart_1");
+		</script>
+	<% end %>
+	<% if @csv_for_chart_2 %>
+	<br/>
+		<script type="text/javascript" src="amline/swfobject.js"></script>
+		<div id="chart_2">You need to upgrade your Flash Player</div>
+		<script type="text/javascript">
+			var so = new SWFObject("amline/amline.swf", "amline", "400", "300", "8", "#FFFFFF");
+			so.addVariable("path", "amline/");
+			so.addVariable("settings_file", encodeURIComponent("chart_2_settings.xml"));
+			so.addVariable("chart_data", encodeURIComponent("<%= @csv_for_chart_2 %>"));
+			so.write("chart_2");
 		</script>
 	<% end %>
 </div>

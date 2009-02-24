@@ -28,6 +28,7 @@ post '/' do
     
     # calculate csv string for the first chart
     @csv_for_chart_1 = @lap_array.collect { |row| [row[0],row[5],row[6]].join(';') }.join('\n')
+    @csv_for_chart_2 = @lap_array.collect { |row| [row[0],row[7],row[8]].join(';') }.join('\n')
     
     # replace all periods by comma's if checkbox has been selected
     @lap_array.collect! { |row| row.collect! { |item| commatize(item) } } if params[:comma]
