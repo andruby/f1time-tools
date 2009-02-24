@@ -81,7 +81,7 @@
       <color_hover>999999</color_hover>
       <fill_alpha>4</fill_alpha>
       <balloon_alpha>80</balloon_alpha>
-      <balloon_text><![CDATA[<b>{value} s</b>]]></balloon_text>
+      <balloon_text><![CDATA[<b>{value} L</b>]]></balloon_text>
     </graph>
     <graph gid="1">
       <title>Gap</title>
@@ -91,7 +91,7 @@
       <selected>0</selected>
       <balloon_alpha>80</balloon_alpha>
       <balloon_text_color>000000</balloon_text_color>
-      <balloon_text><![CDATA[<b>{value} s</b>]]></balloon_text>
+      <balloon_text><![CDATA[<b>{value} °C</b>]]></balloon_text>
     </graph>
   </graphs>
   <labels>
