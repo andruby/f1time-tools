@@ -17,6 +17,9 @@ post '/' do
     # No errors
     # Parse the laptimes into dayfraction for easy excel integration
     @lap_array.collect! { |row| row.insert(4,parse_time(row[3])) }
+    
+    # Parse the laptimes into seconds for easy excel integration
+    @lap_array.collect! { |row| row.insert(5,parse_time(row[3])*24*60*60) }
   
     # add delta median to every row
     @median_laptime = median(@lap_array.collect { |row| parse_time(row[3]) })
