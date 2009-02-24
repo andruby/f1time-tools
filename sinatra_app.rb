@@ -15,6 +15,7 @@ post '/' do
   
   if @gp_name && @lap_array
     # No errors
+    # Rows -- 1: lap, 2: pos, 3: prev_pos, 4: time_string, 5: time dayfraction, 6: time sec, 7: gap, 8: fuel, 9: temp, 10: delta 
     # Parse the laptimes into dayfraction for easy excel integration
     @lap_array.collect! { |row| row.insert(4,parse_time(row[3])) }
     
@@ -24,7 +25,10 @@ post '/' do
     # add delta median to every row
     @median_laptime = median(@lap_array.collect { |row| parse_time(row[3]) })
     @lap_array.collect! { |row| row << fraction_to_sec( parse_time(row[3]) - @median_laptime ) }
-  
+    
+    # calculate csv string for the first chart
+    @csv_for_chart_1 = @lap_array.collect { |row| [row[0],row[5],row[6]].join(';') }.join('\n')
+    
     # replace all periods by comma's if checkbox has been selected
     @lap_array.collect! { |row| row.collect! { |item| commatize(item) } } if params[:comma]
   else
