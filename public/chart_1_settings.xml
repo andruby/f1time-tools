@@ -4,7 +4,8 @@
   <data_type>csv</data_type>
   <background>
     <alpha>90</alpha>
-    <border_alpha>10</border_alpha>
+    <border_color>000000</border_color>
+    <border_alpha>100</border_alpha>
   </background>
   <plot_area>
     <margins>

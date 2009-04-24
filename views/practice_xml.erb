@@ -1,0 +1,96 @@
+<div id="left">
+	<p>Copy and paste the xml from the race weekend page:</p>
+	<form method="post" action="/practice_xml">
+		<textarea name="data" cols="45" rows="10"><%= params[:data] %></textarea>
+		<p>
+			<input type="checkbox" name="comma" value="1" /> Use comma instead of period as decimal separator<br/>
+			<small>( Useful for non-english MS Excel versions )</small>
+		</p>
+		<p>
+			<input type="submit" />
+		</p>
+	</form>
+</div>
+
+<div id="right">
+<h2><%= @track_title %></h2>
+<h3>Sections</h3>
+<% if @sections %>
+  <table class="classic" border="1" cellpadding="3">
+    <thead>
+  	<tr>
+  		<th>Section</th>
+  		<th>Minimum</th>
+  		<th>Average</th>
+  		<th>Median</th>
+  		<th>Maximum</th>
+  		<th>Weight</th>
+  		<th>Std. Dev. %</th>
+  	</tr>
+  	</thead>
+  	<tbody>
+    <% for key,s in @sections %>
+  		<tr>
+  			<td>Section <%= key %></td>
+  			<td><%= s.min %></td>
+  			<td><%= s.mean.round(3) %></td>
+  			<td><%= s.median %></td>
+  			<td><%= s.max %></td>
+  			<td><%= (@section_weight[key-1]*100).round(3) %></td>
+  			<td><%= ((s.deviation/s.mean)*100).round(3) %></td>
+  		</tr>
+  	<% end %>
+  	</tbody>
+  </table>
+<% end %>
+<h3>Car Setup</h3>
+<% if @setup_data %>
+	<table class="classic" border="1" cellpadding="3">
+	  <thead>
+  		<tr>
+  			<th>Part</th>
+  			<th>Section 1</th>
+  			<th>Section 2</th>
+  			<th>Section 3</th>
+  			<th>Weighted average</th>
+  		</tr>
+		</thead>
+		<tbody>
+		<% for part,data in @setup_data %>
+			<tr>
+				<td align="left"><%= part %></td>
+				<% 1.upto(3) do |section| %>
+				  <td align="center"><%= data[section]['min'] %> - <%= data[section]['max'] %></td>
+				<% end %>
+				<td><%= data['weighted_avg'].round(2) %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>
+<h3>DRP info</h3>
+<% if @drp_data %>
+	<table class="classic" border="1" cellpadding="3">
+	  <thead>
+  		<tr>
+  			<th>Lap</th>
+  			<% SKILLS.each do |skill| %>
+  			  <th><%= skill.camelize %></th>
+  			<% end %>
+  		</tr>
+		</thead>
+		<tbody>
+		  <% i = 0 %>
+		  <% @drp_data.each do |data| %>
+  			<tr>
+  				<td align="left"><%= i+=1 %></td>
+    			<% SKILLS.each_index do |skill_id| %>
+    			  <td><%= data[skill_id] %></td>
+    			<% end %>
+  			</tr>
+  		<% end %>
+		</tbody>
+	</table>
+<% end %>
+<%= @drp_data.inspect %>
+</div>

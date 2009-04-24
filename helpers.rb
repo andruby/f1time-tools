@@ -23,5 +23,9 @@ helpers do
     s.to_s.gsub(/[&"><]/,'')
   end
   
+  def xml_child_int(xml,child_name)
+    xml.at(child_name).inner_text.to_i
+  end
+  
   alias :h :html_escape
 end

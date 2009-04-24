@@ -6,13 +6,24 @@
 		<title>Andrew's F1Time Tools</title>
 	</head>
 	<body>
-		<h1>Andrew's F1Time lap data extractor</h1>
+	  <div id="menu">
+	    <ul>
+ 	     <li<%= ' class="selected"' if request.path_info == '/' %>><a href="/">lap data extractor</a></li>
+ 	     <li<%= ' class="selected"' if request.path_info == '/practice_xml' %>><a href="/practice_xml">practice xml parser</a></li>
+ 	   </ul>
+	    <div id="title">Andrew's F1Time Tools</div>
+	  </div>
 		
 		<% if @error %>
 			<div class="error"><%= @error %></div>
 		<% end %>
 		
-		<%= yield %>
+		<div id="content"><%= yield %></div>
+		
+		<div id="footer">
+  		OpenSource Software. <a href="http://github.com/andruby/f1time-tools">Sourcecode</a> - 
+  		<a href="http://www.andrewsblog.org">Andrewsblog</a>
+		</div>
 		
 		<!-- Google Analytics Code -->
 		<script type="text/javascript">
